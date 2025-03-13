@@ -86,7 +86,8 @@ jobs:
 
       - name: Deploy to GKE
         run: |
-          kubectl apply -f k8s/deployment.yaml
+          export IMAGE_TAG=flask-static-demo:${{ github.sha }}
+          envsubst < k8s/deployment.yaml | kubectl apply -f -
           kubectl apply -f k8s/service.yaml
 
       - name: Rollout Restart Deployment
