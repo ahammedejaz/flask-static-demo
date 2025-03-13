@@ -53,7 +53,7 @@ jobs:
 
       - name: Build and push Docker image (multi-arch)
         run: |
-          docker buildx build \
+          docker buildx build --no-cache \
             --platform linux/amd64,linux/arm64 \
             -t ahammedejaz/flask-static-demo:latest \
             --push \
