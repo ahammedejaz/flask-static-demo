@@ -26,11 +26,13 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           cd app
+          pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run tests
         run: |
           # Run your tests here. For example:
+          source venv/bin/activate
           pytest
 
   docker-build-push:
