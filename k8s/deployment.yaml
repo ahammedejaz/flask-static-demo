@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: ahammedejaz/flask-static-demo:latest
+        image: ahammedejaz/flask-static-demo:${IMAGE_TAG}
         imagePullPolicy: Always  # Ensures Kubernetes pulls the image each time
         ports:
         - containerPort: 80
