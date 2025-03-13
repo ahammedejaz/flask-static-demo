@@ -97,3 +97,8 @@ jobs:
         run: |  
           EXTERNAL_IP=$(kubectl get svc flask-service -n monitoring -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
           echo "Application is accessible at: http://${EXTERNAL_IP}"
+          # Optionally verify that the image has been updated.
+
+      - name: Verify Image Update
+        run: |
+            kubectl get pods -n monitoring -o jsonpath='{range .items[*]}{.metadata.name}{" - "}{.status.containerStatuses[*].imageID}{"\n"}{end}'
