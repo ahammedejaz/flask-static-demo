@@ -88,3 +88,8 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+
+      - name: Get External IP of Service
+        run: |  
+          EXTERNAL_IP=$(kubectl get svc flask-service -n monitoring -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          echo "Application is accessible at: http://${EXTERNAL_IP}"
