@@ -89,6 +89,10 @@ jobs:
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
+      - name: Rollout Restart Deployment
+        run: |
+          kubectl rollout restart deployment/flask-app -n monitoring
+
       - name: Get External IP of Service
         run: |  
           EXTERNAL_IP=$(kubectl get svc flask-service -n monitoring -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
